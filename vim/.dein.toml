@@ -1,0 +1,29 @@
+# Plugin List
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]] # Asynchronous
+repo = 'Shougo/vimproc.vim'
+
+[[plugins]]
+repo    = 'vim-airline/vim-airline'
+depends = ['vim-airline-themes']
+[[plugins]] # Status bar
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]] # Change filetype
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]] # toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]] # File Tree
+repo = 'scrooloose/nerdtree'
+
+[[plugins]] # Color
+repo =  'w0ng/vim-hybrid'
