@@ -39,8 +39,6 @@ alias py="python"
 alias py2="python2.7"
 alias py3="python3"
 
-ln -s $HOME/.zplug/repos/sorin-ionescu/prezto $HOME/.zprezto
-
 # -- Settings --
 ## go
 export PATH="/usr/local/sbin:$PATH"
