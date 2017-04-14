@@ -39,6 +39,10 @@ if has('vim_starting') &&  file_name == ''
   autocmd VimEnter * NERDTree ./
 endif
 
+" neomake
+autocmd! BufEnter,BufWritePost * Neomake
+let g:neomake_python_enabled_makers = ['python', 'flake8']
+
 " -- Settitngs --
 set encoding=utf-8
 set fileencoding=utf-8
@@ -65,8 +69,9 @@ set incsearch
 set hlsearch
 
 " Indent
-set tabstop=2
-set shiftwidth=2
+set expandtab
+set tabstop=4
+set shiftwidth=4
 set autoindent
 set smartindent
 
