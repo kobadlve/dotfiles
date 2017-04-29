@@ -33,11 +33,11 @@ if [ -z "$TMUX" -a -z "$STY" ]; then
 fi
 
 # -- Alias --
-alias aizu-ssh="ssh s1230194@sshgate.u-aizu.ac.jp"
-alias aizu-sftp="sftp s1230194@sshgate.u-aizu.ac.jp"
 alias py="python"
 alias py2="python2.7"
 alias py3="python3"
+alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
+alias gcm="git commit -m"
 
 # -- Settings --
 ## go
@@ -51,6 +51,11 @@ export GOROOT=/usr/local/Cellar/go/1.7.3/libexec
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+## rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
 ## dein.vim
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -59,3 +64,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 source ~/.iterm2_shell_integration.`basename $SHELL`
 
 # -- END --
+
