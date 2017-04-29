@@ -7,6 +7,14 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/vimproc.vim'
 
 [[plugins]]
+repo = 'Shougo/neocomplete.vim'
+depends = ['context_filetype.vim']
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+depends = ['context_filetype.vim']
+
+[[plugins]]
 repo    = 'vim-airline/vim-airline'
 depends = ['vim-airline-themes']
 [[plugins]] # Status bar
@@ -27,3 +35,6 @@ repo = 'scrooloose/nerdtree'
 
 [[plugins]] # Color
 repo =  'w0ng/vim-hybrid'
+
+[[plugins]]
+repo = 'neomake/neomake'

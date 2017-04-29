@@ -39,7 +39,7 @@ if has('vim_starting') &&  file_name == ''
   autocmd VimEnter * NERDTree ./
 endif
 
-" neomake
+" Neomake
 autocmd! BufEnter,BufWritePost * Neomake
 let g:neomake_python_enabled_makers = ['python', 'flake8']
 
@@ -55,7 +55,7 @@ set cursorline      " Highlight line number
 hi clear CursorLine
 
 set spell " Spell check
-set spelllang=en,cjk "日本語を除外
+set spelllang=en,cjk
 
 set laststatus=2 " status line
 
@@ -67,13 +67,19 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+set backspace=2
 
 " Indent
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set autoindent
 set smartindent
+
+" python
+autocmd filetype python setl autoindent
+autocmd filetype python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd filetype python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 set mouse=a
 
