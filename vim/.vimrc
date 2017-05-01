@@ -103,6 +103,11 @@ set smartindent
 set splitbelow
 set splitright
 
+" emacs
+imap <c-e> <end>
+imap <c-a> <home>
+imap <c-d> <del>
+
 " python
 autocmd filetype python setl autoindent
 autocmd filetype python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class

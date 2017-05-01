@@ -58,3 +58,13 @@ repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'tpope/vim-markdown'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'greyblake/vim-preview'
+
