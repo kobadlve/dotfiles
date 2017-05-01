@@ -7,11 +7,13 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/vimproc.vim'
 
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
-depends = ['context_filetype.vim']
+repo = 'Shougo/unite.vim'
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
+repo = 'Shougo/neocomplcache'
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
 depends = ['context_filetype.vim']
 
 [[plugins]]
@@ -33,8 +35,26 @@ on_ft = 'toml'
 [[plugins]] # File Tree
 repo = 'scrooloose/nerdtree'
 
+[[plugings]]
+repo = 'jistr/vim-nerdtree-tabs'
+
 [[plugins]] # Color
 repo =  'w0ng/vim-hybrid'
 
 [[plugins]]
 repo = 'neomake/neomake'
+
+[[plugings]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'rhysd/accelerated-jk'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'

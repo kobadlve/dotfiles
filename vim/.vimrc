@@ -33,15 +33,39 @@ if has('vim_starting') && dein#check_install()
 endif
 " }}}
 
-" Launch NERDTree
+" NERDTree
 let file_name = expand('%')
 if has('vim_starting') &&  file_name == ''
   autocmd VimEnter * NERDTree ./
 endif
+let NERDTreeShowHidden = 1
+nmap <Leader><Tab> <C-w>w
+if argc() == 0
+  let g:nerdtree_tabs_open_on_console_startup = 1
+end
 
 " Neomake
 autocmd! BufEnter,BufWritePost * Neomake
 let g:neomake_python_enabled_makers = ['python', 'flake8']
+" unite
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+
+" neo complete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_ignore_case = 1
+let g:neocomplete#enable_smart_case = 1
+
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns._ = '\h\w*'
 
 " -- Settitngs --
 set encoding=utf-8
@@ -75,6 +99,9 @@ set tabstop=2
 set shiftwidth=2
 set autoindent
 set smartindent
+
+set splitbelow
+set splitright
 
 " python
 autocmd filetype python setl autoindent
