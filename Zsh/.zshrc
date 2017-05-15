@@ -5,7 +5,6 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "yous/lime"
-zplug "zsh-users/zsh-syntax-highlighting"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -17,25 +16,28 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
 
-# -- Functions --
-## Auto Launch tmux
-if [[ ! -n $TMUX && $- == *l* ]]; then
-  # get the IDs
-  ID="`tmux list-sessions`"
-  if [[ -z "$ID" ]]; then
-    tmux new-session
-  fi
-  create_new_session="Create New Session"
-  ID="$ID\n${create_new_session}:"
-  ID="`echo $ID | $PERCOL | cut -d: -f1`"
-  if [[ "$ID" = "${create_new_session}" ]]; then
-    tmux new-session
-  elif [[ -n "$ID" ]]; then
-    tmux attach-session -t "$ID"
-  else
-    :  # Start terminal normally
-  fi
-fi
+# -- Options --
+autoload -U compinit
+compinit
+
+export HISTFILE=${HOME}/.zhistory
+export HISTSIZE=1000
+export SAVEHIST=100000
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt hist_no_store
+setopt hist_expand
+setopt inc_append_history
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # -- Alias --
 alias py="python"
@@ -44,7 +46,8 @@ alias py3="python3"
 alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
 alias gcm="git commit -m"
 
-# -- Settings --
+# -- Lang Settings --
+
 ## go
 export PATH="/usr/local/sbin:$PATH"
 export GOPATH=$HOME/.go
