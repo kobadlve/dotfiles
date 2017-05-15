@@ -38,6 +38,7 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*:default' menu select=1
 
 # -- Alias --
 alias py="python"
