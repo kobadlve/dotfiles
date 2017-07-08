@@ -52,9 +52,8 @@ alias gcm="git commit -m"
 ## go
 export PATH="/usr/local/sbin:$PATH"
 export GOPATH=$HOME/.go
-export PATH=$PATH:$GOPATH/bin
-export GOBIN=$GOPATH/bin
-export GOROOT=/usr/local/Cellar/go/1.7.3/libexec
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+export GOROOT=/usr/local/opt/go/libexec
 
 ## pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -63,7 +62,7 @@ eval "$(pyenv init -)"
 
 ## rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 ## dein.vim
 export XDG_CONFIG_HOME="$HOME/.config"

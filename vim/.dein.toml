@@ -44,9 +44,6 @@ repo =  'w0ng/vim-hybrid'
 [[plugins]]
 repo = 'neomake/neomake'
 
-[[plugings]]
-repo = 'thinca/vim-quickrun'
-
 [[plugins]]
 repo = 'rhysd/accelerated-jk'
 
@@ -63,8 +60,16 @@ repo = 'airblade/vim-gitgutter'
 repo = 'tpope/vim-markdown'
 
 [[plugins]]
+repo = 'kannokanno/previm'
+
+[[plugings]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'Shougo/vinarise'
+
+[[plugins]]
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
-repo = 'greyblake/vim-preview'
-
+repo = 'thinca/vim-quickrun'

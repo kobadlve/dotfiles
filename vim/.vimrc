@@ -67,6 +67,14 @@ if !exists('g:neocomplete#keyword_patterns')
 endif
 let g:neocomplete#keyword_patterns._ = '\h\w*'
 
+" Markdown
+au BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'open -a Google\ Chrome'
+
+"quickrun
+let g:quickrun_config={'*': {'split': ''}}
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
+
 " -- Settitngs --
 set encoding=utf-8
 set fileencoding=utf-8
@@ -78,8 +86,13 @@ set number
 set cursorline      " Highlight line number
 hi clear CursorLine
 
-set spell " Spell check
-set spelllang=en,cjk
+" set spell " Spell check
+hi clear SpellBad
+hi SpellBad cterm=underline
+
+" Statusline
+set laststatus=2
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
 
 set laststatus=2 " status line
 
@@ -112,6 +125,17 @@ imap <c-d> <del>
 autocmd filetype python setl autoindent
 autocmd filetype python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd filetype python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
+" binary
+augroup BinaryXXD
+  autocmd!
+  autocmd BufReadPre  *.bin let &binary =1
+  autocmd BufReadPost * if &binary | silent %!xxd -g 1
+  autocmd BufReadPost * set ft=xxd | endif
+  autocmd BufWritePre * if &binary | %!xxd -r | endif
+  autocmd BufWritePost * if &binary | silent %!xxd -g 1
+  autocmd BufWritePost * set nomod | endif
+augroup END
 
 set mouse=a
 
