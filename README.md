@@ -8,14 +8,14 @@
 * dein.vim
 * tmux
 
-## Command
+## Installation
 
 * `curl -sL zplug.sh/installer | zsh`
 
-Install prezto
-``` 
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
+### Vim
+```
+$ mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
+$ git clone https://github.com/Shougo/dein.vim.git ~/.vim/dein/repos/github.com/Shougo/dein.vim
+$ cp vim/.dein.toml ~/.vim/
+$ cp vim/.vimrc ~/.vimrc
 ```
