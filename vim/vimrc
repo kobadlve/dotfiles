@@ -145,10 +145,14 @@ set smartindent
 set splitbelow
 set splitright
 
-" emacs
+" keymap
 imap <c-e> <end>
 imap <c-a> <home>
 imap <c-d> <del>
+imap <c-j> <down>
+imap <c-k> <up>
+imap <c-f> <left>
+imap <c-g> <right>
 
 " python
 autocmd filetype python setl autoindent
