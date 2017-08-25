@@ -35,6 +35,9 @@ on_ft = 'toml'
 [[plugins]] # File Tree
 repo = 'scrooloose/nerdtree'
 
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs'
+
 [[plugings]]
 repo = 'jistr/vim-nerdtree-tabs'
 
@@ -43,6 +46,14 @@ repo =  'w0ng/vim-hybrid'
 
 [[plugins]]
 repo = 'neomake/neomake'
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'nvie/vim-flake8'
+on_fr = 'python'
 
 [[plugins]]
 repo = 'rhysd/accelerated-jk'

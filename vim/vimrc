@@ -33,6 +33,11 @@ if has('vim_starting') && dein#check_install()
 endif
 " }}}
 
+" Update Plugin
+if has('vim_starting') && dein#check_install()
+  call dein#update()
+endif
+
 " NERDTree
 let file_name = expand('%')
 if has('vim_starting') &&  file_name == ''
@@ -43,10 +48,32 @@ nmap <Leader><Tab> <C-w>w
 if argc() == 0
   let g:nerdtree_tabs_open_on_console_startup = 1
 end
+map <C-n> <plug>NERDTreeTabsToggle<CR>
 
-" Neomake
-autocmd! BufEnter,BufWritePost * Neomake
-let g:neomake_python_enabled_makers = ['python', 'flake8']
+" jedi
+let g:jedi#use_tabs_not_buffers = 1 
+let g:jedi#popup_select_first = 0 
+let g:jedi#popup_on_dot = 0
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#rename_command = "<leader>R"
+
+" flake8
+autocmd BufWritePost *.py call Flake8()
+let g:flake8_quickfix_height=7 
+let g:flake8_show_in_gutter=1 
+let g:flake8_show_in_file=1
+
+augroup QfAutoCommands
+  autocmd!
+
+  " Auto-close quickfix window
+  autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+augroup END
+
 " unite
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
@@ -80,6 +107,8 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 syntax on " Color scheme
+colorscheme molokai
+highlight Normal ctermbg=none
 
 set number
 
