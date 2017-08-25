@@ -38,12 +38,6 @@ repo = 'scrooloose/nerdtree'
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'
 
-[[plugings]]
-repo = 'jistr/vim-nerdtree-tabs'
-
-[[plugins]] # Color
-repo =  'w0ng/vim-hybrid'
-
 [[plugins]]
 repo = 'neomake/neomake'
 
@@ -69,12 +63,6 @@ repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
 repo = 'tpope/vim-markdown'
-
-[[plugins]]
-repo = 'kannokanno/previm'
-
-[[plugings]]
-repo = 'tyru/open-browser.vim'
 
 [[plugins]]
 repo = 'Shougo/vinarise'
