@@ -61,15 +61,20 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#rename_command = "<leader>R"
 
-" flake8
-autocmd BufWritePost *.py call Flake8()
-let g:flake8_quickfix_height=7 
-let g:flake8_show_in_gutter=1 
-let g:flake8_show_in_file=1
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_w = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pep8']
 
 augroup QfAutoCommands
   autocmd!
-
   " Auto-close quickfix window
   autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
@@ -151,8 +156,8 @@ imap <c-a> <home>
 imap <c-d> <del>
 imap <c-j> <down>
 imap <c-k> <up>
-imap <c-f> <left>
-imap <c-g> <right>
+imap <c-h> <left>
+imap <c-l> <right>
 
 " python
 autocmd filetype python setl autoindent

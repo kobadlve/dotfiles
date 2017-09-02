@@ -46,8 +46,7 @@ repo = 'davidhalter/jedi-vim'
 on_ft = 'python'
 
 [[plugins]]
-repo = 'nvie/vim-flake8'
-on_fr = 'python'
+repo = 'vim-syntastic/syntastic'
 
 [[plugins]]
 repo = 'rhysd/accelerated-jk'
