@@ -20,6 +20,14 @@ zplug load --verbose
 autoload -U compinit
 compinit
 
+autoload -Uz colors; colors 
+
+export LSCOLORS=Exfxcxdxbxegedabagacad
+export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+
+export ZLS_COLORS=$LS_COLORS
+export CLICOLOR=true
+
 export HISTFILE=${HOME}/.zhistory
 export HISTSIZE=1000
 export SAVEHIST=100000
@@ -44,8 +52,9 @@ zstyle ':completion:*:default' menu select=1
 alias py="python"
 alias py2="python2.7"
 alias py3="python3"
-alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
 alias gcm="git commit -m"
+alias gt="git status"
+alias gl="git log"
 
 # -- Lang Settings --
 
@@ -62,7 +71,7 @@ eval "$(pyenv init -)"
 
 ## rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
+eval "$(rbenv init -)"
 
 ## dein.vim
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -71,5 +80,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 source ~/.iterm2_shell_integration.`basename $SHELL`
 
-# -- END --
+## brew
+export PATH="/usr/local/sbin:$PATH"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
