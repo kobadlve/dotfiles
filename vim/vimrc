@@ -111,15 +111,25 @@ au FileType qf nnoremap <silent><buffer>q :quit<CR>
 "fzf
 set rtp+=/usr/local/opt/fzf
 
+" -- Language --
+" rust
+let g:rustfmt_autosave = 1
+
+" python
+autocmd filetype python setl autoindent
+autocmd filetype python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd filetype python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
 " -- Settitngs --
 set encoding=utf-8
 set fileencoding=utf-8
 
 syntax on " Color scheme
-colorscheme solarized
+colorscheme molokai
 set background=dark
 highlight Normal ctermbg=none
 
+" set clipboard=unnamed,autoselect
 set number
 
 set cursorline      " Highlight line number
@@ -164,11 +174,6 @@ imap <c-j> <down>
 imap <c-k> <up>
 imap <c-h> <left>
 imap <c-l> <right>
-
-" python
-autocmd filetype python setl autoindent
-autocmd filetype python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd filetype python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 " binary
 augroup BinaryXXD
