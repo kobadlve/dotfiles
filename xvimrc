@@ -1,0 +1,11 @@
+noremap ; :
+noremap : ;
+
+" keymap
+imap <c-n> <backspace>
+imap <c-f> <del>
+imap <c-j> <down>
+imap <c-k> <up>
+imap <c-h> <left>
+imap <c-l> <right>
+
