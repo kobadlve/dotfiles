@@ -200,6 +200,11 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+
 nnoremap Y y$  " Yank
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

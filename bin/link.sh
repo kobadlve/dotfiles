@@ -5,7 +5,6 @@ for f in .??*; do
 done
 
 dir=`pwd`
-dir=`dirname $dir`
 
 # vim
 cp -r $dir/vim/colors ~/.vim/colors

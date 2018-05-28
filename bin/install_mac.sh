@@ -13,7 +13,6 @@ brew update
 formulas=(
   git
   zsh
-  zplug
   zsh-completions
   zsh-syntax-highlighting
   "vim --with-lua"
@@ -40,4 +39,4 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 echo "Make link..."
 ./link.sh
 
-echo "Finished setup!"
+echo "Finished!"
