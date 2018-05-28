@@ -50,6 +50,26 @@ if argc() == 0
 end
 map <C-n> <plug>NERDTreeTabsToggle<CR>
 
+" neomake
+let g:neomake_open_list = 2 
+autocmd! BufWritePost,BufEnter * Neomake
+let g:neomake_error_sign = {
+\ 'text': '',
+\ 'texthl': 'Error',
+\ }
+let g:neomake_warning_sign = {
+\ 'text': '',
+\ 'texthl': 'Error',
+\ }
+let g:neomake_info_sign = {
+\ 'text': '',
+\ 'texthl': 'Title',
+\ }
+let g:neomake_message_sign = {
+\ 'text': '',
+\ 'texthl': 'Operator',
+\ }
+
 " jedi
 let g:jedi#use_tabs_not_buffers = 1 
 let g:jedi#popup_select_first = 0 
@@ -61,18 +81,6 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#rename_command = "<leader>R"
 
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_w = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['flake8']
-
 augroup QfAutoCommands
   autocmd!
   " Auto-close quickfix window
@@ -81,6 +89,12 @@ augroup END
 
 " unite
 let g:unite_enable_smart_case = 1
+let g:unite_enable_start_insert = 1
+let g:unite_enable_ignore_case = 1
+nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+
 if executable('ag')
     let g:unite_source_grep_command       = 'ag'
     let g:unite_source_grep_default_opts  = '--nogroup --nocolor --column'
@@ -100,80 +114,19 @@ if !exists('g:neocomplete#keyword_patterns')
 endif
 let g:neocomplete#keyword_patterns._ = '\h\w*'
 
-" Markdown
-au BufRead,BufNewFile *.md set filetype=markdown
-let g:previm_open_cmd = 'open -a Google\ Chrome'
-
-"quickrun
-let g:quickrun_config={'*': {'split': ''}}
-au FileType qf nnoremap <silent><buffer>q :quit<CR>
-
-"fzf
-set rtp+=/usr/local/opt/fzf
-
 " -- Language --
 " rust
 let g:rustfmt_autosave = 1
+set hidden
+let g:racer_cmd = '~/.cargo/bin/racer'
+let $RUST_SRC_PATH="~/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
+set omnifunc=syntaxcomplete#Complete
+autocmd filetype rust setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 " python
 autocmd filetype python setl autoindent
 autocmd filetype python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd filetype python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-
-" -- Settitngs --
-set encoding=utf-8
-set fileencoding=utf-8
-
-syntax on " Color scheme
-colorscheme molokai
-set background=dark
-highlight Normal ctermbg=none
-
-" set clipboard=unnamed,autoselect
-set number
-
-set cursorline      " Highlight line number
-hi clear CursorLine
-
-" set spell " Spell check
-hi clear SpellBad
-hi SpellBad cterm=underline
-
-" Statusline
-set laststatus=2
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
-
-set laststatus=2 " status line
-
-set nowrap
-
-set pumheight=10
-
-set ignorecase
-set smartcase
-set incsearch
-set hlsearch
-set backspace=2
-
-" Indent
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set autoindent
-set smartindent
-
-set splitbelow
-set splitright
-
-" keymap
-imap <c-e> <end>
-imap <c-a> <home>
-imap <c-d> <backspace>
-imap <c-f> <del>
-imap <c-j> <down>
-imap <c-k> <up>
-imap <c-h> <left>
-imap <c-l> <right>
 
 " binary
 augroup BinaryXXD
@@ -186,9 +139,55 @@ augroup BinaryXXD
   autocmd BufWritePost * set nomod | endif
 augroup END
 
-set mouse=a
+" -- Settitngs --
+set encoding=utf-8
+set fileencoding=utf-8
 
+syntax on " Color scheme
+colorscheme solarized 
+highlight Normal ctermbg=none
+
+" set clipboard=unnamed,autoselect
+set number
+set wildmode=list:longest
+
+set cursorline      " Highlight line number
+hi clear CursorLine
+
+" set spell " Spell check
+hi clear SpellBad
+hi SpellBad cterm=underline
+
+" Statusline
+set laststatus=2
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
+
+set nowrap
+set pumheight=10
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set backspace=2
+
+" Indent
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set autoindent
+set smartindent
+set mouse=a
 set whichwrap=b,s,h,l,<,>,[,],~
+
+set splitbelow
+set splitright
+
+" keymap
+imap <c-e> <end>
+imap <c-a> <home>
+imap <c-j> <down>
+imap <c-k> <up>
+imap <c-l> <right>
 
 inoremap jj <Esc> " jj -> ESC
 
@@ -201,24 +200,10 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
-
 nnoremap Y y$  " Yank
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
 autocmd BufWritePre * :%s/\s\+$//ge " Delete Extra space
-
-if exists('$TMUX') " setting on tmux
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
 
 if !has('gui_running') " Modify lag when switch mode.
     set timeout timeoutlen=1000 ttimeoutlen=50

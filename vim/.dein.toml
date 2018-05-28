@@ -5,16 +5,14 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]] # Asynchronous
 repo = 'Shougo/vimproc.vim'
+build = 'make'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
 
 [[plugins]]
-repo = 'Shougo/neocomplcache'
-
-[[plugins]]
-repo = 'Shougo/neocomplete.vim'
-depends = ['context_filetype.vim']
+repo      = 'Shougo/neomru.vim'
+on_source = ['unite.vim']
 
 [[plugins]]
 repo    = 'vim-airline/vim-airline'
@@ -41,13 +39,13 @@ repo = 'jistr/vim-nerdtree-tabs'
 
 [[plugins]]
 repo = 'neomake/neomake'
+hook_add = '''
+autocmd! BufWritePost * Neomake
+'''
 
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
 on_ft = 'python'
-
-[[plugins]]
-repo = 'vim-syntastic/syntastic'
 
 [[plugins]]
 repo = 'rhysd/accelerated-jk'
@@ -59,40 +57,11 @@ repo = 'Shougo/neosnippet.vim'
 repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
-repo = 'airblade/vim-gitgutter'
-
-[[plugins]]
-repo = 'tpope/vim-markdown'
-
-[[plugins]]
 repo = 'Shougo/vinarise'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
-[[plugins]]
-repo = 'thinca/vim-quickrun'
-
-# go
-[[plugins]]
-repo = 'Shougo/vimshell.vim'
-
-[[plugings]]
-repo = 'sebdah/vim-delve'
-
-[[plugins]]
-repo = 'fatih/vim-go'
-
-[[plugins]]
-repo = 'mattn/vim-fz'
-
-# rust
-[[plugins]]
-repo = 'rust-lang/rust.vim'
-
 # nvim
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-
-[[plugins]]
-repo = 'jodosha/vim-godebug'

@@ -1,10 +1,12 @@
 # -- zplug --
 source ~/.zplug/init.zsh
+source ~/.zsh/private.zsh
 
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "yous/lime"
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -56,18 +58,19 @@ alias gcm="git commit -m"
 alias gt="git status"
 alias gl="git log"
 
-# -- Lang Settings --
-
-## go
-export PATH="/usr/local/sbin:$PATH"
-export GOPATH=$HOME/.go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-export GOROOT=/usr/local/opt/go/libexec
+# -- ENV --
 
 ## pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+### python startup
+export PYTHONSTARTUP=~/.pythonstartup.py
+
+### rust
+export PATH=${PATH}:"$HOME/.cargo/bin"
+export RUST_SRC_PATH="$HOME/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
 
 ## rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -83,4 +86,6 @@ source ~/.iterm2_shell_integration.`basename $SHELL`
 ## brew
 export PATH="/usr/local/sbin:$PATH"
 
+## fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /Users/koba/.cargo/env
