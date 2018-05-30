@@ -31,7 +31,7 @@ export ZLS_COLORS=$LS_COLORS
 export CLICOLOR=true
 
 export HISTFILE=${HOME}/.zhistory
-export HISTSIZE=1000
+export HISTSIZE=10000
 export SAVEHIST=100000
 setopt hist_ignore_dups
 setopt EXTENDED_HISTORY

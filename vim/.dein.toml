@@ -62,6 +62,9 @@ repo = 'Shougo/vinarise'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
+
 # nvim
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
