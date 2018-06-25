@@ -9,7 +9,7 @@ dir=`pwd`
 # vim
 cp -r $dir/vim/colors ~/.vim/colors
 ln -snfv $dir/vim/.vimrc ~/.vimrc
-ln -snfv $dir/vim/.dein_toml ~/.vim/.dein_toml
+ln -snfv $dir/vim/.dein.toml ~/.vim/.dein.toml
 
 # zsh
 ln -snfv $dir/zsh/.zshrc ~/.zshrc
