@@ -89,3 +89,8 @@ export PATH="/usr/local/sbin:$PATH"
 ## fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source /Users/koba/.cargo/env
+export PATH=$PATH:/Users/koba/Library/Android/sdk/platform-tools
+
+## Docker
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
