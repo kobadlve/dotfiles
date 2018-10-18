@@ -68,3 +68,7 @@ repo = 'terryma/vim-multiple-cursors'
 # nvim
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+
+# go
+[[plugins]]
+repo = 'fatih/vim-go'

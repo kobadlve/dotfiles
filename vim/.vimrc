@@ -7,6 +7,19 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
+" local config
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+  let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction
+
 " -- dein --
 " dein settings {{{
 " Install dein
@@ -140,6 +153,16 @@ autocmd filetype rust setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd filetype python setl autoindent
 autocmd filetype python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd filetype python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
+" go
+let g:go_bin_path = $GOPATH.'/bin'
+filetype plugin indent on
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 " binary
 augroup BinaryXXD
