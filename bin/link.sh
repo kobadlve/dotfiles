@@ -17,3 +17,5 @@ ln -snfv $dir/zsh/.zshrc ~/.zshrc
 # dev
 ln -snfv $dir/dev/.pythonstartup.py ~/.pythonstartup.py
 
+# hyper
+ln -snfv $dir/hyper/.hyper.js ~/.hyper.js
