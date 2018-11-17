@@ -154,15 +154,12 @@ autocmd filetype python setl autoindent
 autocmd filetype python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd filetype python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
-" go
-let g:go_bin_path = $GOPATH.'/bin'
+" vim-go
 filetype plugin indent on
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+let g:go_bin_path = $GOPATH.'/bin'
+let g:go_fmt_command = 'goimports'
+let g:go_list_type = "quickfix"
+autocmd BufWritePre *.go GoFmt
 
 " binary
 augroup BinaryXXD

@@ -1,6 +1,8 @@
 # -- zplug --
 source ~/.zplug/init.zsh
-source ~/.zsh/private.zsh
+if [[ -a ~/.zsh/private.zsh ]]; then
+  source ~/.zsh/private.zsh
+fi
 
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
@@ -72,6 +74,11 @@ export PYTHONSTARTUP=~/.pythonstartup.py
 export PATH=${PATH}:"$HOME/.cargo/bin"
 export RUST_SRC_PATH="$HOME/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
 
+### go
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
 ## rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -94,3 +101,8 @@ export PATH=$PATH:/Users/koba/Library/Android/sdk/platform-tools
 ## Docker
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
+
+# tmux
+if type tmux > /dev/null; then
+  tmux
+fi
