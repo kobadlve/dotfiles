@@ -125,9 +125,9 @@ module.exports = {
     // for advanced config flags please refer to https://hyper.is/#cfg
     visor: {
       hotkey: 'Control+Enter',
-      position: 'top', // or left, right, bottom
-      width: 200, // Optional, defaults to half of viewable area for horizontal positions, 100% for vertical
-      height: 900, // Optional, defaults to half of viewable area for vertical positions, 100% for horizontal
+      position: 'left', // or left, right, bottom
+      width: 1680,
+      height: 1050,
     },
   },
 

@@ -75,7 +75,6 @@ export PATH=${PATH}:"$HOME/.cargo/bin"
 export RUST_SRC_PATH="$HOME/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
 
 ### go
-
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
@@ -85,10 +84,6 @@ eval "$(rbenv init -)"
 
 ## dein.vim
 export XDG_CONFIG_HOME="$HOME/.config"
-
-## iTerm2
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-source ~/.iterm2_shell_integration.`basename $SHELL`
 
 ## brew
 export PATH="/usr/local/sbin:$PATH"
@@ -103,6 +98,4 @@ fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
 # tmux
-if type tmux > /dev/null; then
-  tmux
-fi
+[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
