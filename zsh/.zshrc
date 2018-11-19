@@ -1,3 +1,6 @@
+# First load tmux
+[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
+
 # -- zplug --
 source ~/.zplug/init.zsh
 if [[ -a ~/.zsh/private.zsh ]]; then
@@ -97,5 +100,3 @@ export PATH=$PATH:/Users/koba/Library/Android/sdk/platform-tools
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
-# tmux
-[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
