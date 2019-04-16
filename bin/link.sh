@@ -14,6 +14,9 @@ ln -snfv $dir/vim/.dein.toml ~/.vim/.dein.toml
 # zsh
 ln -snfv $dir/zsh/.zshrc ~/.zshrc
 
+# tmux
+ln -snfv $dir/tmux/.tmux.conf ~/.tmux.conf
+
 # dev
 ln -snfv $dir/dev/.pythonstartup.py ~/.pythonstartup.py
 

@@ -15,9 +15,11 @@ formulas=(
   zsh
   zsh-completions
   zsh-syntax-highlighting
+  zlib
   "vim --with-lua"
   neovim
   the_silver_searcher
+  tmux
 )
 
 echo "Homebrew install fomulas..."

@@ -31,6 +31,9 @@ repo = 'Shougo/context_filetype.vim'
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
+[[plugins]]
+repo = 'vim-syntastic/syntastic'
+
 [[plugins]] # File Tree
 repo = 'scrooloose/nerdtree'
 

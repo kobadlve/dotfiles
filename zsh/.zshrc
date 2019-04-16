@@ -62,6 +62,7 @@ alias py3="python3"
 alias gcm="git commit -m"
 alias gt="git status"
 alias gl="git log"
+alias vim="nvim"
 
 # -- ENV --
 
@@ -90,10 +91,17 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 ## brew
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 ## fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /Users/koba/.cargo/env
+function select-history() {
+  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  CURSOR=$#BUFFER
+}
+zle -N select-history
+bindkey '^r' select-history
+
+source $HOME/.cargo/env
 export PATH=$PATH:/Users/koba/Library/Android/sdk/platform-tools
 
 ## Docker
