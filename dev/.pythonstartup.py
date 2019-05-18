@@ -7,5 +7,6 @@ try:
     open(histfile, 'a').close()
     readline.read_history_file(histfile)
     atexit.register(readline.write_history_file, histfile)
+    readline.parse_and_bind("tab: complete")
 except IOError:
     pass

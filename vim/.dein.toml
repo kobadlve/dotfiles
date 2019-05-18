@@ -75,3 +75,7 @@ repo = 'Shougo/deoplete.nvim'
 # go
 [[plugins]]
 repo = 'fatih/vim-go'
+
+# search and open file
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'

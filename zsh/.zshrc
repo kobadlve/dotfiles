@@ -12,6 +12,7 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug mafredri/zsh-async, from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug "rupa/z", use:z.sh
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -77,6 +78,7 @@ export PYTHONSTARTUP=~/.pythonstartup.py
 ### rust
 export PATH=${PATH}:"$HOME/.cargo/bin"
 export RUST_SRC_PATH="$HOME/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
+source $HOME/.cargo/env
 
 ### go
 export GOPATH=$HOME/go
@@ -101,10 +103,32 @@ function select-history() {
 zle -N select-history
 bindkey '^r' select-history
 
-source $HOME/.cargo/env
+fzf-z-search() {
+    local res=$(z | sort -rn | cut -c 12- | fzf)
+    if [ -n "$res" ]; then
+        BUFFER+="cd $res"
+        zle accept-line
+    else
+        return 1
+    fi
+}
+
+zle -N fzf-z-search
+bindkey '^f' fzf-z-search
+
+## Android
 export PATH=$PATH:/Users/koba/Library/Android/sdk/platform-tools
 
 ## Docker
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
+
+## nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+## ITerm2
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+## ctags
+alias ctags='/usr/local/Cellar/universal-ctags/HEAD-9b28d8c/bin/ctags'
 
