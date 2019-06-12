@@ -8,11 +8,11 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
-repo = 'Shougo/unite.vim'
+repo = 'Shougo/denite.nvim'
 
 [[plugins]]
 repo      = 'Shougo/neomru.vim'
-on_source = ['unite.vim']
+on_source = ['denite.vim']
 
 [[plugins]]
 repo    = 'vim-airline/vim-airline'

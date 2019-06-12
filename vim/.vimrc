@@ -61,12 +61,10 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_python_checkers = ["flake8"]
+" let g:syntastic_python_checkers = ["flake8"]
 
 " multi cursor
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
+let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_start_word_key      = '<C-n>'
 let g:multi_cursor_select_all_word_key = '<A-n>'
 let g:multi_cursor_start_key           = 'g<C-n>'
@@ -125,32 +123,31 @@ augroup QfAutoCommands
   autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
 
-" unite
-let g:unite_enable_smart_case = 1
-let g:unite_enable_start_insert = 1
-let g:unite_enable_ignore_case = 1
-nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
-nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+" denite
+let g:denite_enable_smart_case = 1
+let g:denite_enable_start_insert = 1
+let g:denite_enable_ignore_case = 1
+nnoremap <silent> ,g  :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ,cg :<C-u>Denite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> ,r  :<C-u>DeniteResume search-buffer<CR>
 
 if executable('ag')
-    let g:unite_source_grep_command       = 'ag'
-    let g:unite_source_grep_default_opts  = '--nogroup --nocolor --column'
-    let g:unite_source_grep_recursive_opt = ''
+    let g:denite_source_grep_command       = 'ag'
+    let g:denite_source_grep_default_opts  = '--nogroup --nocolor --column'
+    let g:denite_source_grep_recursive_opt = ''
 endif
-nnoremap [unite] <Nop>
-nmap <Space>u [unite]
-nnoremap [unite]f :<C-u>Unite file<CR>
+nnoremap [Window] <Nop>
+nmap s [Window]
+nnoremap [denite]f :<C-u>Denite file<CR>
 
-" neo complete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_ignore_case = 1
-let g:neocomplete#enable_smart_case = 1
-
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns._ = '\h\w*'
+" deoplete
+let g:deoplete#enable_at_startup = 0
+let g:deoplete#enable_ignore_case = 0  
+let g:deoplete#enable_smart_case = 0 
+let g:deoplete#auto_complete_delay = 0
+let g:deoplete#auto_completion_start_length = 5
+imap <expr><CR>
+      \ (pumvisible() && neosnippet#expandable()) ? "\<Plug>(neosnippet_expand_or_jump)" : "\<CR>"
 
 " -- Language --
 " rust
@@ -208,7 +205,6 @@ set laststatus=2
 " set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
 
 set nowrap
-set pumheight=10
 set ignorecase
 set smartcase
 set incsearch
@@ -253,7 +249,9 @@ nnoremap <C-h> <C-w>h
 nnoremap Y y$  " Yank
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-autocmd BufWritePre * :%s/\s\+$//ge " Delete Extra space
+
+set timeoutlen=1000
+set ttimeoutlen=0
 
 if !has('gui_running') " Modify lag when switch mode.
     set timeout timeoutlen=1000 ttimeoutlen=50

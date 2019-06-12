@@ -56,6 +56,8 @@ bindkey "^S" history-incremental-search-forward
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:default' menu select=1
 
+KEYTIMEOUT=1
+
 # -- Alias --
 alias py="python"
 alias py2="python2.7"
@@ -117,7 +119,8 @@ zle -N fzf-z-search
 bindkey '^f' fzf-z-search
 
 ## Android
-export PATH=$PATH:/Users/koba/Library/Android/sdk/platform-tools
+export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
+
 
 ## Docker
 fpath=(~/.zsh/completion $fpath)
@@ -131,4 +134,3 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 ## ctags
 alias ctags='/usr/local/Cellar/universal-ctags/HEAD-9b28d8c/bin/ctags'
-
