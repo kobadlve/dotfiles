@@ -32,7 +32,7 @@ endif
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
 
 " Load Plugin
-let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/.vim/.dein.toml'
+let s:toml_file = '~/.vim/.dein.toml'
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
   call dein#load_toml(s:toml_file)
@@ -181,6 +181,14 @@ augroup BinaryXXD
   autocmd BufWritePost * set nomod | endif
 augroup END
 
+"html
+augroup MyXML
+  autocmd!
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype php inoremap <buffer> </ </<C-x><C-o>
+augroup END
+
 " -- Settitngs --
 set encoding=utf-8
 set fileencoding=utf-8
@@ -189,7 +197,7 @@ syntax on " Color scheme
 colorscheme solarized 
 highlight Normal ctermbg=none
 
-" set clipboard=unnamed,autoselect
+set clipboard=unnamed
 set number
 set wildmode=list:longest
 
@@ -202,7 +210,6 @@ hi SpellBad cterm=underline
 
 " Statusline
 set laststatus=2
-" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
 
 set nowrap
 set ignorecase

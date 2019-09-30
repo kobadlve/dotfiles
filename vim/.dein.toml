@@ -79,3 +79,6 @@ repo = 'fatih/vim-go'
 # search and open file
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
+
+# html
+repo = 'mattn/emmet-vim'

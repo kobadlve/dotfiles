@@ -30,6 +30,7 @@ compinit
 
 autoload -Uz colors; colors 
 
+export LC_ALL=en_US.UTF-8
 export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 
@@ -134,3 +135,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 ## ctags
 alias ctags='/usr/local/Cellar/universal-ctags/HEAD-9b28d8c/bin/ctags'
+
+## nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
