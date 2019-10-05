@@ -1,10 +1,9 @@
 #!/bin/bash
 
-for f in .??*; do
-    [ "$f" = ".git" ] && continue
-done
+dir=~/dotfiles
 
-dir=`pwd`
+# git
+ln -snfv $dir/git/.gitignore_global
 
 # vim
 cp -r $dir/vim/colors ~/.vim/colors

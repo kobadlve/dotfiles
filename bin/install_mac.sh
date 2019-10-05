@@ -9,14 +9,13 @@ fi
 echo "Homebrew update..."
 brew update
 
-
 formulas=(
   git
   zsh
   zsh-completions
   zsh-syntax-highlighting
   zlib
-  "vim --with-lua"
+  vim
   neovim
   the_silver_searcher
   tmux
@@ -30,14 +29,14 @@ done
 echo "Homebrew cleanup"
 brew cleanup
 
-echo "Dein..."
+echo "Dein Install..."
 mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
 git clone https://github.com/Shougo/dein.vim.git ~/.vim/dein/repos/github.com/Shougo/dein.vim
 cd ~/.vim/dein/repos/github.com/Shougo/dein.vim/bin
 ./install.sh ~/.vim/.cache
 cd
 
-echo "zplug"
+echo "zplug install..."
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 
 # link
