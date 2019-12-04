@@ -1,5 +1,20 @@
+# kill detached tmux session
+type tmux > /dev/null 2>&1
+if [ $? -eq 0 ] ; then
+  session_exist="`tmux list-sessions | grep -v attached`"
+  if [[ $session_exist ]] ; then
+    echo $session_exist
+    echo "Do you close detached tmux session?(y/N): "
+    if read -q; then
+      echo "Closing detaching session"
+      tmux list-sessions | grep -v attached | cut -d: -f1 |  xargs -t -n1 tmux kill-session -t
+    else
+      echo "Session existing"
+    fi
+  fi
+fi
 # First load tmux
-[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
+if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then exec tmux; fi
 
 # -- zplug --
 source ~/.zplug/init.zsh
@@ -67,6 +82,9 @@ alias gcm="git commit -m"
 alias gt="git status"
 alias gl="git log"
 alias vim="nvim"
+
+# hub command
+function git(){hub "$@"}
 
 # -- ENV --
 
