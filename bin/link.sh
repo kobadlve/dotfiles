@@ -9,6 +9,7 @@ ln -snfv $dir/git/.gitignore_global
 cp -r $dir/vim/colors ~/.vim/colors
 ln -snfv $dir/vim/.vimrc ~/.vimrc
 ln -snfv $dir/vim/.dein.toml ~/.vim/.dein.toml
+ln -snfv .vim/ .config/nvim/.vim
 
 # zsh
 ln -snfv $dir/zsh/.zshrc ~/.zshrc
