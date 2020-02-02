@@ -43,9 +43,22 @@ hook_add = '''
 autocmd! BufWritePost * Neomake
 '''
 
+# --- LSP ---
 [[plugins]]
-repo = 'davidhalter/jedi-vim'
-on_ft = 'python'
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+#  -----
 
 [[plugins]]
 repo = 'rhysd/accelerated-jk'
