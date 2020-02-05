@@ -1,94 +1,94 @@
 # Plugin List
 
+# Plugin manager
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+# Interactive command execution
 [[plugins]] # Asynchronous
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 
+# Dark powered for interface
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 
-[[plugins]]
-repo      = 'Shougo/neomru.vim'
-on_source = ['denite.vim']
-
+# Status bar
 [[plugins]]
 repo    = 'vim-airline/vim-airline'
 depends = ['vim-airline-themes']
-
-[[plugins]] # Status bar
+[[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 
-[[plugins]] # Change filetype
+# Switch filetype by cursor position
+[[plugins]]
 repo = 'osyo-manga/vim-precious'
 depends = ['context_filetype.vim']
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
-[[plugins]] # toml syntax
+# Syntax for TOML
+[[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
-[[plugins]] # File Tree
+# File tree
+[[plugins]]
 repo = 'scrooloose/nerdtree'
-
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'
 
+# Asynchronous linting
 [[plugins]]
 repo = 'neomake/neomake'
 hook_add = '''
 autocmd! BufWritePost * Neomake
 '''
 
-# --- LSP ---
+# Language Server Protocol
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
-
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
-
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
-
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
-#  -----
 
-[[plugins]]
-repo = 'rhysd/accelerated-jk'
-
+# Snippet support
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
-
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
+# Hex editing
 [[plugins]]
 repo = 'Shougo/vinarise'
 
+# Git
+[[plugins]]
+repo = "airblade/vim-gitgutter"
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
+# Multiple cursor
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
 
-# nvim
+# Asynchronous completion
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-
-# go
-[[plugins]]
-repo = 'fatih/vim-go'
 
 # search and open file
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
 
-# html
+# Language
+## go
+[[plugins]]
+repo = 'fatih/vim-go'
+## html
+[[plugins]]
 repo = 'mattn/emmet-vim'

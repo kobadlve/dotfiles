@@ -12,7 +12,6 @@ augroup vimrc-local
   autocmd!
   autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
 augroup END
-
 function! s:vimrc_local(loc)
   let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
   for i in reverse(filter(files, 'filereadable(v:val)'))
@@ -50,6 +49,11 @@ endif
 if has('vim_starting') && dein#check_install()
   call dein#update()
 endif
+
+" -- plugin settings --
+
+" airline
+let g:airline#extensions#tabline#enabled = 1
 
 " multi cursor
 let g:multi_cursor_use_default_mapping = 0
@@ -94,36 +98,9 @@ let g:neomake_message_sign = {
 \ 'texthl': 'Operator',
 \ }
 
-" lsp
-let g:lsp_diagnostics_enabled = 0
-" debug
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('~/.vim/.vim-lsp.log')
-let g:asyncomplete_log_file = expand('~/.vim/.asyncomplete.log')
-
-" - python
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
-
-" - go
-if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-endif
-
-" ---
-
+" Auto-close quickfix window
 augroup QfAutoCommands
   autocmd!
-  " Auto-close quickfix window
   autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
 
@@ -145,7 +122,6 @@ augroup denite_filter
     \ denite#do_map('toggle_select').'j'
   endfunction
 augroup END
-
 " use floating
 let s:denite_win_width_percent = 0.85
 let s:denite_win_height_percent = 0.7
@@ -177,7 +153,6 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
-
 " grep
 command! -nargs=? Dgrep call s:Dgrep(<f-args>)
 function s:Dgrep(...)
@@ -187,7 +162,6 @@ function s:Dgrep(...)
     execute(':Denite -buffer-name=grep-buffer-denite '.join(s:denite_option_array, ' ').' grep')
   endif
 endfunction
-
 " file open
 command! -nargs=? Dopen call s:Dopen(<f-args>)
 function s:Dopen(...)
@@ -209,6 +183,16 @@ let g:deoplete#auto_complete_delay = 0
 let g:deoplete#auto_completion_start_length = 5
 imap <expr><CR>
       \ (pumvisible() && neosnippet#expandable()) ? "\<Plug>(neosnippet_expand_or_jump)" : "\<CR>"
+
+" lsp
+let g:lsp_diagnostics_enabled = 0
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/.vim/.vim-lsp.log')
+let g:asyncomplete_log_file = expand('~/.vim/.asyncomplete.log')
+let g:lsp_text_edit_enabled = 0  " 補完時に後ろの文字が消えるのを直した
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
 " -- Language --
 " rust
@@ -250,7 +234,7 @@ augroup MyXML
   autocmd Filetype php inoremap <buffer> </ </<C-x><C-o>
 augroup END
 
-" -- Settitngs --
+" -- Common Settitngs --
 set encoding=utf-8
 set fileencoding=utf-8
 
@@ -265,7 +249,6 @@ set wildmode=list:longest
 set cursorline      " Highlight line number
 hi clear CursorLine
 
-" set spell " Spell check
 hi clear SpellBad
 hi SpellBad cterm=underline
 
@@ -297,6 +280,7 @@ imap <c-a> <home>
 imap <c-j> <down>
 imap <c-k> <up>
 imap <c-l> <right>
+imap <c-b> <left>
 
 inoremap jj <Esc> " jj -> ESC
 
