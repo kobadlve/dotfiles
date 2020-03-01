@@ -154,6 +154,3 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 ## ctags
 alias ctags='/usr/local/Cellar/universal-ctags/HEAD-9b28d8c/bin/ctags'
 
-## nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
