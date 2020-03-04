@@ -1,17 +1,18 @@
 #!/bin/bash
 
-dir=~/dotfiles
+dir=$(cd $(dirname $0/); cd ../; pwd)
 
 # git
-ln -snfv $dir/git/.gitignore_global
+ln -snfv $dir/git/.gitignore_global ~/.gitignore_global
 
 # vim
-cp -r $dir/vim/colors ~/.vim/colors
+cp -r $dir/vim/colors ~/.vim/
 ln -snfv $dir/vim/.vimrc ~/.vimrc
 ln -snfv $dir/vim/.dein.toml ~/.vim/.dein.toml
 
 # neovim
-cp -r $dir/vim/colors ~/.config/nvim/colors
+mkdir -p ~/.config/nvim/.vim
+cp -r $dir/vim/colors ~/.config/nvim/
 ln -snfv $dir/.vim/ ~/.config/nvim/.vim
 
 # zsh

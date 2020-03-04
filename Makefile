@@ -1,12 +1,13 @@
 SHELL := /bin/bash
+.PHONY: help all install update
 
 help:
 	@echo "make (install link update)"
 
-all:
+all: update install link
 
 install:
-	@./bin/install_mac.sh
+	@./bin/install.sh
 
 link:
 	@./bin/link.sh
