@@ -60,4 +60,7 @@ cd
 echo "zplug install..."
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 
+echo "z command"
+git clone git@github.com:rupa/z.git ~/z
+
 echo "Finished!"

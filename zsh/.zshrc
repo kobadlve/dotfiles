@@ -14,7 +14,10 @@ if [ $? -eq 0 ] ; then
   fi
 fi
 # First load tmux
-if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then exec tmux; fi
+if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
+  echo "Start tmux"
+  exec tmux
+fi
 
 # -- zplug --
 source ~/.zplug/init.zsh
@@ -22,6 +25,7 @@ if [[ -a ~/.zsh/private.zsh ]]; then
   source ~/.zsh/private.zsh
 fi
 
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
@@ -43,7 +47,7 @@ zplug load --verbose
 autoload -U compinit
 compinit
 
-autoload -Uz colors; colors 
+autoload -Uz colors; colors
 
 export LC_ALL=en_US.UTF-8
 export LSCOLORS=Exfxcxdxbxegedabagacad
@@ -154,3 +158,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 ## ctags
 alias ctags='/usr/local/Cellar/universal-ctags/HEAD-9b28d8c/bin/ctags'
 
+## z command
+. ~/z/z.sh

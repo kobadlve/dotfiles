@@ -40,10 +40,11 @@ repo = 'jistr/vim-nerdtree-tabs'
 
 # Asynchronous linting
 [[plugins]]
-repo = 'neomake/neomake'
-hook_add = '''
-autocmd! BufWritePost * Neomake
-'''
+repo = 'dense-analysis/ale'
+
+# provieds completions
+[[plugins]]
+repo = 'gelguy/wilder.nvim'
 
 # Language Server Protocol
 [[plugins]]
@@ -57,11 +58,20 @@ repo = 'prabirshrestha/asyncomplete-lsp.vim'
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
 
+# QuickRun
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
 # Snippet support
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+
+# lexima
+[[plugins]]
+repo = 'cohama/lexima.vim'
+on_i = 1
 
 # Hex editing
 [[plugins]]

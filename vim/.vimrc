@@ -78,26 +78,6 @@ if argc() == 0
 end
 map <C-n> <plug>NERDTreeTabsToggle<CR>
 
-" neomake
-let g:neomake_open_list = 2 
-autocmd! BufWritePost,BufEnter * Neomake
-let g:neomake_error_sign = {
-\ 'text': '',
-\ 'texthl': 'Error',
-\ }
-let g:neomake_warning_sign = {
-\ 'text': '',
-\ 'texthl': 'Error',
-\ }
-let g:neomake_info_sign = {
-\ 'text': '',
-\ 'texthl': 'Title',
-\ }
-let g:neomake_message_sign = {
-\ 'text': '',
-\ 'texthl': 'Operator',
-\ }
-
 " Auto-close quickfix window
 augroup QfAutoCommands
   autocmd!
@@ -177,8 +157,8 @@ call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'nor
 
 " deoplete
 let g:deoplete#enable_at_startup = 0
-let g:deoplete#enable_ignore_case = 0  
-let g:deoplete#enable_smart_case = 0 
+let g:deoplete#enable_ignore_case = 0
+let g:deoplete#enable_smart_case = 0
 let g:deoplete#auto_complete_delay = 0
 let g:deoplete#auto_completion_start_length = 5
 imap <expr><CR>
@@ -193,6 +173,40 @@ let g:lsp_text_edit_enabled = 0  " 補完時に後ろの文字が消えるのを
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+
+" wilder
+call wilder#enable_cmdline_enter()
+
+set wildcharm=<Tab>
+cmap <expr> <Tab> wilder#in_context() ? wilder#next() : "\<Tab>"
+cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"
+
+" only / and ? is enabled by default
+call wilder#set_option('modes', ['/', '?', ':'])
+
+" ale
+let g:ale_linters = {
+      \ 'python': ['flake8'],
+      \ }
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['autopep8'],
+\}
+let g:ale_lint_on_text_changed = 0
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
+" Sign
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:airline#extensions#ale#open_lnum_symbol = '('
+let g:airline#extensions#ale#close_lnum_symbol = ')'
+let g:ale_echo_msg_format = '[%linter%]%code: %%s'
+highlight link ALEErrorSign Tag
+highlight link ALEWarningSign StorageClass
+
+" QuickRun
+" Close \q
+nnoremap <Leader>q :call quickrun#sweep_sessions()<CR>:<C-u>bw! quickrun\ output<CR>
 
 " -- Language --
 " rust
@@ -239,7 +253,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 syntax on " Color scheme
-colorscheme solarized 
+colorscheme solarized
 highlight Normal ctermbg=none
 
 set clipboard=unnamed
@@ -281,6 +295,7 @@ imap <c-j> <down>
 imap <c-k> <up>
 imap <c-l> <right>
 imap <c-b> <left>
+imap <c-o> <Esc>o
 
 inoremap jj <Esc> " jj -> ESC
 
