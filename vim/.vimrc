@@ -39,6 +39,13 @@ if dein#load_state(s:dein_dir)
   call dein#save_state()
 endif
 
+" denite
+call dein#add('Shougo/denite.nvim')
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+
 " Install Plugin
 if has('vim_starting') && dein#check_install()
   call dein#install()
@@ -173,16 +180,6 @@ let g:lsp_text_edit_enabled = 0  " 補完時に後ろの文字が消えるのを
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-
-" wilder
-call wilder#enable_cmdline_enter()
-
-set wildcharm=<Tab>
-cmap <expr> <Tab> wilder#in_context() ? wilder#next() : "\<Tab>"
-cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"
-
-" only / and ? is enabled by default
-call wilder#set_option('modes', ['/', '?', ':'])
 
 " ale
 let g:ale_linters = {

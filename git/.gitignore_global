@@ -53,3 +53,5 @@ DerivedData/
 ## Gcc Patch
 /*.gcno
 
+.tours/*
+.idea/

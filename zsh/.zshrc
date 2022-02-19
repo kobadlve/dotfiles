@@ -26,12 +26,13 @@ if [[ -a ~/.zsh/private.zsh ]]; then
 fi
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-autosuggestions"
 zplug mafredri/zsh-async, from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 zplug "rupa/z", use:z.sh
+zplug "b4b4r07/enhancd", use:init.sh
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -88,7 +89,7 @@ alias gl="git log"
 alias vim="nvim"
 
 # hub command
-function git(){hub "$@"}
+# function git(){hub "$@"}
 
 # -- ENV --
 
@@ -122,28 +123,22 @@ export PATH="/usr/local/bin:$PATH"
 
 ## fzf
 function select-history() {
-  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  BUFFER=$(history -n -r 1 | fzf +m --no-sort --query "$LBUFFER" --prompt="History > ")
   CURSOR=$#BUFFER
 }
 zle -N select-history
 bindkey '^r' select-history
 
-fzf-z-search() {
-    local res=$(z | sort -rn | cut -c 12- | fzf)
-    if [ -n "$res" ]; then
-        BUFFER+="cd $res"
-        zle accept-line
-    else
-        return 1
-    fi
+function select-sort-history() {
+  BUFFER=$(history -n -r 1 | fzf +m --query "$LBUFFER" --prompt="History > ")
+  CURSOR=$#BUFFER
 }
-
-zle -N fzf-z-search
-bindkey '^f' fzf-z-search
+zle -N select-sort-history
+bindkey '^u' select-sort-history
 
 ## Android
 export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
-
+export PATH=$PATH:$HOME/Library/Android/sdk/build-tools/30.0.3
 
 ## Docker
 fpath=(~/.zsh/completion $fpath)
@@ -160,3 +155,32 @@ alias ctags='/usr/local/Cellar/universal-ctags/HEAD-9b28d8c/bin/ctags'
 
 ## z command
 . ~/z/z.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+# export MONO_GAC_PREFIX="/usr/local"
+
+# AWS CLI completion
+complete -C '/usr/local/bin/aws_completer' aws
+complete -C `which aws_completer` awslocal
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
+
+# Omnisharp
+export PATH=/usr/local/share/dotnet/dotnet:$PATH
+
+# Unity
+# export JAVA_HOME="/Applications/Unity/Hub/Editor/2020.3.18f1/PlaybackEngines/AndroidPlayer/OpenJDK"
+# export ANDROID_HOME=/Applications/Unity/Hub/Editor/2020.3.18f1/PlaybackEngines/AndroidPlayer/SDK
+# export ANDROID_SDK_HOME=/Applications/Unity/Hub/Editor/2020.3.18f1/PlaybackEngines/AndroidPlayer/SDK
+# export ANDROID_AVD_HOME=/Users/$USER/.android/avd
+# export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_AVD_HOME
+
+# Flutter
+export PATH="$PATH:$HOME/dev/flutter/flutter/bin"

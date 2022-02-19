@@ -27,24 +27,13 @@ depends = ['context_filetype.vim']
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
-# Syntax for TOML
-[[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = 'toml'
-
 # File tree
 [[plugins]]
-repo = 'scrooloose/nerdtree'
-[[plugins]]
-repo = 'jistr/vim-nerdtree-tabs'
+repo = 'preservim/nerdtree'
 
 # Asynchronous linting
 [[plugins]]
 repo = 'dense-analysis/ale'
-
-# provieds completions
-[[plugins]]
-repo = 'gelguy/wilder.nvim'
 
 # Language Server Protocol
 [[plugins]]
