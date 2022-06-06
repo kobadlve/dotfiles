@@ -32,7 +32,6 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug mafredri/zsh-async, from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 zplug "rupa/z", use:z.sh
-zplug "b4b4r07/enhancd", use:init.sh
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -78,6 +77,19 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:default' menu select=1
 
 KEYTIMEOUT=1
+
+# ^o = z + fzf (directory search)
+fzf-z-search() {
+    local res=$(z | sort -rn | cut -c 12- | fzf)
+    if [ -n "$res" ]; then
+        BUFFER+="cd $res"
+        zle accept-line
+    else
+        return 1
+    fi
+}
+zle -N fzf-z-search
+bindkey '^o' fzf-z-search
 
 # -- Alias --
 alias py="python"
@@ -159,18 +171,22 @@ alias ctags='/usr/local/Cellar/universal-ctags/HEAD-9b28d8c/bin/ctags'
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
 
-# The next line enables shell command completion for gcloud.
+source ~/google-cloud-sdk/path.zsh.inc
+source ~/google-cloud-sdk/completion.zsh.inc
+
+# The next line enables shell command completion for ggit remote add google \
+# https://source.developers.google.com/p/[PROJECT_NAME]/r/[REPO_NAME]cloud.
 if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 # export MONO_GAC_PREFIX="/usr/local"
 
 # AWS CLI completion
-complete -C '/usr/local/bin/aws_completer' aws
-complete -C `which aws_completer` awslocal
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
+# complete -C '/usr/local/bin/aws_completer' aws
+# complete -C `which aws_completer` awslocal
+#
+# autoload -U +X bashcompinit && bashcompinit
+# complete -o nospace -C /usr/local/bin/terraform terraform
 
 # Omnisharp
 export PATH=/usr/local/share/dotnet/dotnet:$PATH
