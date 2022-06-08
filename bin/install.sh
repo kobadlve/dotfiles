@@ -63,4 +63,7 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 echo "z command"
 git clone git@github.com:rupa/z.git ~/z
 
+ehco "tmp install"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 echo "Finished!"
