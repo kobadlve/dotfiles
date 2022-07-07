@@ -13,7 +13,7 @@ ln -snfv $dir/vim/.dein.toml ~/.vim/.dein.toml
 # neovim
 mkdir -p ~/.config/nvim/.vim
 cp -r $dir/vim/colors ~/.config/nvim/
-ln -snfv $dir/.vim/ ~/.config/nvim/.vim
+ln -snfv $dir/vim/.vimrc ~/.config/nvim/init.vim
 
 # zsh
 ln -snfv $dir/zsh/.zshrc ~/.zshrc
@@ -23,6 +23,3 @@ ln -snfv $dir/tmux/.tmux.conf ~/.tmux.conf
 
 # dev
 ln -snfv $dir/dev/.pythonstartup.py ~/.pythonstartup.py
-
-# hyper
-ln -snfv $dir/hyper/.hyper.js ~/.hyper.js

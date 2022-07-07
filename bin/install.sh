@@ -22,6 +22,8 @@ if [ "$(uname)" == 'Darwin' ]; then
     the_silver_searcher
     tmux
     fzf
+    pyenv
+    rbenv
   )
 
   echo "Homebrew install fomulas..."
@@ -50,6 +52,9 @@ else
   done
 fi
 
+echo "rustup Install..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 echo "Dein Install..."
 mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
 git clone https://github.com/Shougo/dein.vim.git ~/.vim/dein/repos/github.com/Shougo/dein.vim
@@ -63,7 +68,7 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 echo "z command"
 git clone git@github.com:rupa/z.git ~/z
 
-ehco "tmp install"
+echo "tmp install"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "Finished!"
