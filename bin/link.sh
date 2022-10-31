@@ -9,6 +9,7 @@ ln -snfv $dir/git/.gitignore_global ~/.gitignore_global
 cp -r $dir/vim/colors ~/.vim/
 ln -snfv $dir/vim/.vimrc ~/.vimrc
 ln -snfv $dir/vim/.dein.toml ~/.vim/.dein.toml
+ln -s "$HOME/.vimrc" "$HOME/.ideavimrc"
 
 # neovim
 mkdir -p ~/.config/nvim/.vim
