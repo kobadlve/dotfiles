@@ -29,9 +29,25 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
-zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 zplug "rupa/z", use:z.sh
+zplug "sorin-ionescu/prezto", \
+  use:"init.zsh", \
+  hook-build:"ln -s $ZPLUG_HOME/repos/sorin-ionescu/prezto ~/.zprezto"
+zstyle ':prezto:*:*' color 'yes'
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'directory' \
+  'utility' \
+  'completion' \
+  'git' \
+  'python' \
+  'fasd' \
+  'tmux' \
+  'prompt'
+zstyle ':prezto:module:prompt' theme 'sorin'
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -199,4 +215,9 @@ export PATH=/usr/local/share/dotnet/dotnet:$PATH
 # export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_AVD_HOME
 
 # Flutter
-export PATH="$PATH:$HOME/dev/flutter/flutter/bin"
+# export PATH="$PATH:$HOME/dev/flutter/flutter/bin"
+
+complete -o nospace -C /opt/homebrew/Cellar/tfenv/3.0.0/versions/1.4.4/terraform terraform
+
+# direnv
+eval "$(direnv hook zsh)"
