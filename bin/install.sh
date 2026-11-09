@@ -24,6 +24,8 @@ if [ "$(uname)" == 'Darwin' ]; then
     fzf
     pyenv
     rbenv
+    direnv
+    mise
   )
 
   echo "Homebrew install fomulas..."

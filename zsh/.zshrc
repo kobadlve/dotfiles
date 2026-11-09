@@ -1,4 +1,6 @@
 # kill detached tmux session
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 type tmux > /dev/null 2>&1
 if [ $? -eq 0 ] ; then
   session_exist="`tmux list-sessions | grep -v attached`"
@@ -27,7 +29,8 @@ fi
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting"
+# zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zdharma-continuum/fast-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "rupa/z", use:z.sh
 zplug "sorin-ionescu/prezto", \
@@ -48,6 +51,8 @@ zstyle ':prezto:load' pmodule \
   'tmux' \
   'prompt'
 zstyle ':prezto:module:prompt' theme 'sorin'
+
+fpath+=~/.zfunc
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -121,26 +126,12 @@ alias vim="nvim"
 
 # -- ENV --
 
-## pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 ### python startup
 export PYTHONSTARTUP=~/.pythonstartup.py
-
-### rust
-export PATH=${PATH}:"$HOME/.cargo/bin"
-export RUST_SRC_PATH="$HOME/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
-source $HOME/.cargo/env
 
 ### go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-
-## rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 
 ## dein.vim
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -182,10 +173,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 alias ctags='/usr/local/Cellar/universal-ctags/HEAD-9b28d8c/bin/ctags'
 
 ## z command
-. ~/z/z.sh
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
+#. ~/z/z.sh
 
 source ~/google-cloud-sdk/path.zsh.inc
 source ~/google-cloud-sdk/completion.zsh.inc
@@ -221,3 +209,6 @@ complete -o nospace -C /opt/homebrew/Cellar/tfenv/3.0.0/versions/1.4.4/terraform
 
 # direnv
 eval "$(direnv hook zsh)"
+
+# mise
+eval "$(~/.local/bin/mise activate --shims)"
